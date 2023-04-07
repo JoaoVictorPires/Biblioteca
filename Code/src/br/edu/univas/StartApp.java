@@ -40,18 +40,18 @@ public class StartApp {
         } while(boot);
         leitor.close();
     }
-    public static void cadastrarLivro(String url, Scanner scanner, Cadastro biblioteca, List<String> existentes) {
-        scanner.nextLine();
+    public static void cadastrarLivro(String url, Scanner leitor, Cadastro biblioteca, List<String> existentes) {
+        leitor.nextLine();
         String[] conteudoLivro = new String[3];
         System.out.print("Por favor, digite o nome do livro: ");
-        conteudoLivro[0] = scanner.nextLine();
+        conteudoLivro[0] = leitor.nextLine();
         System.out.print("Por favor, digite o número de páginas: ");
-        int numeroPaginas = scanner.nextInt();
-        scanner.nextLine();
+        int numeroPaginas = leitor.nextInt();
+        leitor.nextLine();
         System.out.print("Por favor, digite o nome do autor: ");
-        conteudoLivro[1] = scanner.nextLine();
+        conteudoLivro[1] = leitor.nextLine();
         System.out.print("Por favor, digite a área de interesse: ");
-        conteudoLivro[2] = scanner.nextLine();
+        conteudoLivro[2] = leitor.nextLine();
         if(existentes.size() == 1){
             biblioteca.CadastrarLivros(conteudoLivro[0].trim(), String.valueOf(numeroPaginas).trim(), conteudoLivro[1].trim(), conteudoLivro[2].trim(), url);
             System.out.println(conteudoLivro[0] + " - Livro Cadastrado");
@@ -72,29 +72,29 @@ public class StartApp {
         }
     }
 
-    public static void buscarLivro(Scanner scanner, List<String> existentes) {
+    public static void buscarLivro(Scanner leitor, List<String> existentes) {
         if (existentes.size() == 1)
             System.out.println("Cadastre pelo menos um livro! \n");
         else {
-            scanner.nextLine();
+            leitor.nextLine();
             System.out.print("""
                         Qual será a forma de busca para o livro?
                         1- Nome do Livro
                         2- Nome do Autor
                         3- Área de Interesse
                         Escolha:""");
-            int escolha = scanner.nextInt();
-            if (escolha == 1) buscaPorNomeLivro(scanner, existentes);
-            else if (escolha == 2) buscaPorNomeAutor(scanner, existentes);
-            else if (escolha == 3) buscaPorAreaInteresse(scanner, existentes);
+            int escolha = leitor.nextInt();
+            if (escolha == 1) buscaPorNomeLivro(leitor, existentes);
+            else if (escolha == 2) buscaPorNomeAutor(leitor, existentes);
+            else if (escolha == 3) buscaPorAreaInteresse(leitor, existentes);
             else System.out.println("Escolha Incorreta!");
         }
     }
 
-    public static void buscaPorNomeLivro(Scanner scanner, List<String> existentes) {
-        scanner.nextLine();
+    public static void buscaPorNomeLivro(Scanner leitor, List<String> existentes) {
+        leitor.nextLine();
         System.out.print("Qual o nome do livro? ");
-        String nomeDoLivro = scanner.nextLine();
+        String nomeDoLivro = leitor.nextLine();
         boolean encontrado = false;
         for (int i = 1; i < existentes.size(); i++) {
             if (existentes.get(i).split(",")[0].trim().equals(nomeDoLivro.trim())) {
@@ -104,10 +104,10 @@ public class StartApp {
         }
         if(!encontrado) System.out.println("Livro não encontrado!");
     }
-    public static void buscaPorNomeAutor(Scanner scanner, List<String> existentes) {
-        scanner.nextLine();
+    public static void buscaPorNomeAutor(Scanner leitor, List<String> existentes) {
+        leitor.nextLine();
         System.out.print("Qual o nome do autor? ");
-        String nomeDoAutor = scanner.nextLine();
+        String nomeDoAutor = leitor.nextLine();
         boolean encontrado = false;
         for (int i = 1; i < existentes.size(); i++) {
             if (existentes.get(i).split(",")[2].trim().equals(nomeDoAutor.trim())) {
@@ -117,10 +117,10 @@ public class StartApp {
         }
         if(!encontrado) System.out.println("Livro com o nome do autor não encontrado!");
     }
-    public static void buscaPorAreaInteresse(Scanner scanner, List<String> existentes) {
-        scanner.nextLine();
+    public static void buscaPorAreaInteresse(Scanner leitor, List<String> existentes) {
+        leitor.nextLine();
         System.out.print("Qual à area de interesse? ");
-        String areaDeInteresse = scanner.nextLine();
+        String areaDeInteresse = leitor.nextLine();
         boolean encontrado = false;
         for (int i = 1; i < existentes.size(); i++) {
             if (existentes.get(i).split(",")[3].trim().equals(areaDeInteresse.trim())) {
@@ -132,7 +132,7 @@ public class StartApp {
     }
 
 
-    public static void excluirLivro(String url, Scanner scanner, Cadastro biblioteca, List<String> existentes) {
+    public static void excluirLivro(String url, Scanner leitor, Cadastro biblioteca, List<String> existentes) {
         if (existentes.size() == 1)
             System.out.println("Cadastre pelo menos um livro! \n");
         else {
@@ -143,10 +143,10 @@ public class StartApp {
                     "nome do Autor",
                     "área de Interesse"
             };
-            scanner.nextLine();
+            leitor.nextLine();
             for (int i = 0; i < livro.length; i++) {
                 System.out.print("Por favor, digite o " + estruturaLivro[i] + ": ");
-                livro[i] = scanner.nextLine();
+                livro[i] = leitor.nextLine();
             }
             boolean encontrado = false;
             for (int i = 1; i < existentes.size(); i++) {
