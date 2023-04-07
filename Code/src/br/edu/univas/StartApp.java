@@ -27,9 +27,9 @@ public class StartApp {
             int escolha = leitor.nextInt();
             List<String> existentes = biblioteca.LinhaExistentes(url);
             switch (escolha) {
-                default -> System.out.println("Escolha incorreta!");
+                default -> System.out.println("Escolha incorreta, por favor escolha outra!");
                 case 0 -> {
-                    System.out.println("Bye bye");
+                    System.out.println("Até mais");
                     boot = false;
                 }
                 case 1 -> cadastrarLivro(url, leitor, biblioteca, existentes);
@@ -53,7 +53,7 @@ public class StartApp {
         System.out.print("Por favor, digite a área de interesse: ");
         conteudoLivro[2] = scanner.nextLine();
         if(existentes.size() == 1){
-            biblioteca.CadastrarBiblioteca(conteudoLivro[0].trim(), String.valueOf(numeroPaginas).trim(), conteudoLivro[1].trim(), conteudoLivro[2].trim(), url);
+            biblioteca.CadastrarLivros(conteudoLivro[0].trim(), String.valueOf(numeroPaginas).trim(), conteudoLivro[1].trim(), conteudoLivro[2].trim(), url);
             System.out.println(conteudoLivro[0] + " - Livro Cadastrado");
         } else {
             boolean encontrado = false;
@@ -66,7 +66,7 @@ public class StartApp {
             if(encontrado)
                 System.out.println("Livro duplicado! \n");
             else {
-                biblioteca.CadastrarBiblioteca(conteudoLivro[0].trim(), String.valueOf(numeroPaginas).trim(), conteudoLivro[1].trim(), conteudoLivro[2].trim(), url);
+                biblioteca.CadastrarLivros(conteudoLivro[0].trim(), String.valueOf(numeroPaginas).trim(), conteudoLivro[1].trim(), conteudoLivro[2].trim(), url);
                 System.out.println(conteudoLivro[0] + " - Livro Cadastrado");
             }
         }

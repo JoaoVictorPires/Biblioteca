@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Cadastro {
 
-    public void CadastrarBiblioteca(String nome_do_livro, String numero_de_paginas, String nome_do_autor, String area_de_interesse, String url) {
+    public void CadastrarLivros(String nome_do_livro, String numero_de_paginas, String nome_do_autor, String area_de_interesse, String url) {
         CriarArquivo(url);
         try {
             List<String> existentes = LinhaExistentes(url);
@@ -57,7 +57,7 @@ public class Cadastro {
         try {
             if (!retornaExistenciaDoArquivo(arquivo)) {
                 arquivo.createNewFile();
-                CadastrarBiblioteca("nome_do_livro".trim(),"numero_de_paginas".trim(),"nome_do_autor".trim(),"area_de_interesse".trim(), url);
+                CadastrarLivros("nome_do_livro".trim(),"numero_de_paginas".trim(),"nome_do_autor".trim(),"area_de_interesse".trim(), url);
             }
         } catch (Exception e) {
             System.out.println("Erro ao criar arquivo!\n");
